@@ -1,0 +1,124 @@
+<div class="contenedor">
+  <div class="principal">
+    <div style="margin-left: 10px; margin-top: 10px;">Listado de Pokemon</div>
+    <div class="flex-box">
+      <div style="margin-left: 10px; margin-top: 10px;">
+        <input type="search" class="icono-placeholder" name="nuevo" placeholder=" Buscar" >
+      </div>
+
+      <div  style="margin-right: 44px; margin-top: 10px;">
+        <button class="boton boton-btnPrimary" (click)="nuevoPokemon()"><i class="fa-solid fa-plus"></i> Nuevo</button>
+      </div>
+    </div>
+
+    <div style="margin-top: 10px; margin-left: 10px;" *ngIf="!pokemons">
+      <h2>Loading...</h2>
+    </div>
+
+    <div style="margin-top: 10px; margin-left: 10px;" *ngIf="pokemons && estado == 'visor'">
+      <table border="1" bordercolor="#d3d6e4">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Ataque</th>
+            <th>Defensa</th>
+            <th>Acciones</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pokemons">
+            <td style="text-align: center;">{{item.name}} </td>
+            <td style="text-align: center;"><img src="{{item.image}}" WIDTH=90 HEIGHT=90 ALT='No existe'>  </td>
+            <td style="text-align: center;">{{item.attack}} </td>
+            <td style="text-align: center;">{{item.defense}} </td>
+            <td style="text-align: center;">&nbsp;&nbsp;<i class="fa-solid fa-pen" style="color: #673ab7;">&nbsp;&nbsp;&nbsp;</i><i class="fa-solid fa-trash-can" style="color: #673ab7;"></i>   </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="estado == 'nuevo'" style="background-color: white; margin-top: 15px;margin-left: 10px;margin-right: 45px;border: #d3d6e4;">
+      <p style="text-align: center;">Nuevo Pokemon</p>
+      <form [formGroup]="form" (ngSubmit)="addPOkemon()">
+      <div style="margin-top: 5px; margin-left: 25px; margin-right: 45px;" class="flex-box">
+            <div>
+              <label for="nombre">Nombre:&nbsp;</label>
+              <input type="text" formControlName="mombre"
+                            class="input-pokemon"
+                            name="nombre"
+                            placeholder="ingresar nombre" >
+            </div>
+
+            <div style="padding-top: 5px;">
+              <label for="ataque">Ataque:&nbsp; &nbsp;{{ataqueValor}}&nbsp; &nbsp; </label>
+              <input formControlName="ataque" type="range"
+                      min="0"
+                      max="100"
+                      name="ataque"
+                      step="1"
+                      value="0"
+                      list="ataqueticks"> &nbsp; &nbsp;100
+                 <datalist id="ataqueticks">
+                 <option value="0">
+                 <option value="10">
+                 <option value="20">
+                 <option value="30">
+                 <option value="40">
+                 <option value="50">
+                 <option value="60">
+                 <option value="70">
+                 <option value="80">
+                 <option value="90">
+                 <option value="100">
+                 </datalist>
+            </div>
+
+       </div>
+      <div style="margin-top: 10px; margin-left: 25px; margin-right: 45px;" class="flex-box">
+        <div>
+            <label for="imagen">Imagen:&nbsp;&nbsp;</label>
+            <input type="text" formControlName="image"
+                          class="input-pokemon"
+                          name="imagen"
+                          placeholder="ingresar url" >
+          </div>
+          <div style="padding-top: 5px;">
+            <label for="defensa">Defensa:&nbsp; &nbsp;{{defensaValor}}&nbsp; &nbsp; </label>
+            <input formControlName="defensa" type="range"
+                    min="0"
+                    max="100"
+                    name="defensa"
+                    step="1"
+                    value="0"
+                    list="defensaticks"> &nbsp; &nbsp;100
+               <datalist id="defensaticks">
+               <option value="0">
+               <option value="10">
+               <option value="20">
+               <option value="30">
+               <option value="40">
+               <option value="50">
+               <option value="60">
+               <option value="70">
+               <option value="80">
+               <option value="90">
+               <option value="100">
+               </datalist>
+          </div>
+      </div>
+      <div class="flex-box-2" style="margin-top: 20px; padding-bottom: 20px;">
+        <div  style="margin-right: 44px; margin-top: 10px;">
+          <button class="boton boton-btnPrimary" (click)="addPOkemon()"><i class="fa-solid fa-floppy-disk"></i> Guardar</button>
+        </div>
+        <div  style="margin-right: 44px; margin-top: 10px;">
+          <button class="boton boton-btnPrimary" (click)="nuevoPokemon()"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+        </div>
+      </div>
+     </form>
+
+    </div>
+
+  </div>
+</div>

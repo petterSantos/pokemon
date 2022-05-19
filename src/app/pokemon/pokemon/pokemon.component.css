@@ -1,0 +1,22 @@
+.principal{
+  position: absolute;
+  background-color: rgb(241, 240, 240);
+  width: 60%;
+  padding-bottom: 25%;
+  margin-top: 30px;
+}
+
+.flex-box {
+  display:flex;
+  justify-content:space-between;
+ }
+
+ .flex-box-2 {
+   display:flex;
+   justify-content: flex-end;
+  }
+.container-group{
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
