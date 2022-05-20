@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -8,6 +8,7 @@ import { Pokemon } from '../../interfaces';
 })
 export class PokemonService {
 url = environment.url;
+private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor( private http: HttpClient) { }
 
@@ -24,7 +25,8 @@ url = environment.url;
   }
 
   editPokemon(id:number,pokemon:Pokemon):Observable<Pokemon>{
-    return this.http.put<Pokemon>(`${this.url}${id}`,pokemon)
+    console.log(`${this.url}${id}`)
+    return this.http.put<Pokemon>(`${this.url}${id}`,pokemon,{headers: this.httpHeaders})
   }
 
   delete(id:number):Observable<any>{
